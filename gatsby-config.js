@@ -17,11 +17,11 @@ try {
 
 module.exports = {
   siteMetadata: {
-    title: 'GCN',
+    title: 'Swag On Nutrition & Wellness',
     description:
-      'A starter template to build amazing static websites with Gatsby, Contentful and Netlify',
-    siteUrl: 'https://gcn.netlify.com',
-    image: '/images/share.jpg',
+      'Live a healthier lifestyle.',
+    siteUrl: 'https://swagonwellness.in',
+    image: '/images/swagonwellness.jpg',
     menuLinks: [
       {
         name: 'Home',
