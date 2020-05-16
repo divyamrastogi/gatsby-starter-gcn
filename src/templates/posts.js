@@ -1,5 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import getPages from '../utils/getPages';
 import Layout from '../components/Layout'
 import CardList from '../components/CardList'
 import Card from '../components/Card'
@@ -8,8 +9,10 @@ import Pagination from '../components/Pagination'
 import SEO from '../components/SEO'
 import { startCase } from 'lodash'
 
+
 const Posts = ({ data, pageContext }) => {
   const posts = data.allContentfulPost.edges
+  const pages = getPages(data.allContentfulPage.edges)
   const { humanPageNumber, basePath } = pageContext
   const isFirstPage = humanPageNumber === 1
   let featuredPost
@@ -27,7 +30,7 @@ const Posts = ({ data, pageContext }) => {
   }
 
   return (
-    <Layout>
+    <Layout pages={pages}>
       <SEO title={startCase(basePath)} image={ogImage} />
       <Container>
         {isFirstPage ? (
@@ -52,6 +55,14 @@ const Posts = ({ data, pageContext }) => {
 
 export const query = graphql`
   query($skip: Int!, $limit: Int!) {
+    allContentfulPage {
+      edges {
+        node {
+          slug
+          title
+        }
+      }
+    }
     allContentfulPost(
       sort: { fields: [publishDate], order: DESC }
       limit: $limit

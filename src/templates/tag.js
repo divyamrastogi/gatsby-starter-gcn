@@ -9,6 +9,7 @@ import CardList from '../components/CardList'
 import PageTitle from '../components/PageTitle'
 import Pagination from '../components/Pagination'
 import Container from '../components/Container'
+import getPages from '../utils/getPages'
 
 const TagTemplate = ({ data, pageContext }) => {
   const posts = orderBy(
@@ -17,6 +18,7 @@ const TagTemplate = ({ data, pageContext }) => {
     [object => new moment(object.publishDateISO)],
     ['desc']
   )
+  const pages = getPages(data.allContentfulPage.edges)
 
   const { title } = data.contentfulTag
   const numberOfPosts = posts.length
@@ -33,7 +35,7 @@ const TagTemplate = ({ data, pageContext }) => {
 
   return (
     <>
-      <Layout>
+      <Layout pages={pages}>
         <SEO
           title={`Tag: ${startCase(title)}`}
           description={`Posts Tagged: ${startCase(title)}`}
@@ -59,6 +61,14 @@ const TagTemplate = ({ data, pageContext }) => {
 
 export const query = graphql`
   query($slug: String!) {
+    allContentfulPage {
+      edges {
+        node {
+          slug
+          title
+        }
+      }
+    }
     contentfulTag(slug: { eq: $slug }) {
       title
       id

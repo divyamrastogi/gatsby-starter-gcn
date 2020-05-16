@@ -8,6 +8,7 @@ import TagList from '../components/TagList'
 import PostLinks from '../components/PostLinks'
 import PostDetails from '../components/PostDetails'
 import SEO from '../components/SEO'
+import getPages from '../utils/getPages'
 
 const PostTemplate = ({ data, pageContext }) => {
   const {
@@ -22,6 +23,7 @@ const PostTemplate = ({ data, pageContext }) => {
   const previous = pageContext.prev
   const next = pageContext.next
   const { basePath } = pageContext
+  const pages = getPages(data.allContentfulPage.edges)
 
   let ogImage
   try {
@@ -31,7 +33,7 @@ const PostTemplate = ({ data, pageContext }) => {
   }
 
   return (
-    <Layout>
+    <Layout pages={pages}>
       <SEO
         title={title}
         description={
@@ -57,6 +59,14 @@ const PostTemplate = ({ data, pageContext }) => {
 
 export const query = graphql`
   query($slug: String!) {
+    allContentfulPage {
+      edges {
+        node {
+          slug
+          title
+        }
+      }
+    }
     contentfulPost(slug: { eq: $slug }) {
       title
       slug

@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import styled from '@emotion/styled'
 import { useSiteMetadata } from '../hooks/use-site-metadata'
+import memoizeOne from 'memoize-one'
 
 const Header = styled.header`
   background: ${props => props.theme.colors.primary};
@@ -22,6 +23,7 @@ const Nav = styled.nav`
   li {
     display: inline-block;
     margin-left: 1em;
+    white-space: nowrap;
     &:first-of-type {
       position: relative;
       margin: 0;
@@ -41,20 +43,27 @@ const Nav = styled.nav`
   }
 `
 
+const getMenuLinks = memoizeOne((links, pages) => {
+  return [...links, ...pages]
+})
+
 const activeLinkStyle = {
   color: 'white',
 }
 
-const Menu = () => {
-  const { menuLinks } = useSiteMetadata()
+const defaultPages = []
+
+const Menu = ({ pages = defaultPages }) => {
+  const { menuLinks: links } = useSiteMetadata()
+  const menuLinks = getMenuLinks(links, pages)
   return (
     <Header>
       <Nav>
         <ul>
           {menuLinks.map(link => (
-            <li key={link.name}>
+            <li key={link.id || link.name}>
               <Link to={link.slug} activeStyle={activeLinkStyle}>
-                {link.name}
+                {link.title || link.name}
               </Link>
             </li>
           ))}

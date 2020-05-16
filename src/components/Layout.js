@@ -42,7 +42,7 @@ const Layout = props => {
         <Skip href="#main" id="skip-navigation">
           Skip to content
         </Skip>
-        <Menu />
+        <Menu pages={props.pages} />
         <div id="main">{props.children}</div>
       </div>
       <Footer />
