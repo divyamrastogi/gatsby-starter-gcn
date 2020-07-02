@@ -9,7 +9,7 @@ const Post = styled.li`
   border-radius: 2px;
   margin: 0 0 1em 0;
   width: 100%;
-  transition: background 0.2s;
+  transition: background border 0.2s;
   @media screen and (min-width: ${props => props.theme.responsive.small}) {
     flex: ${props => (props.featured ? '0 0 100%' : '0 0 49%')};
     margin: 0 0 2vw 0;
@@ -18,7 +18,11 @@ const Post = styled.li`
     flex: ${props => (props.featured ? '0 0 100%' : '0 0 32%')};
   }
   &:hover {
-    background: ${props => props.theme.colors.tertiary};
+    border-color: ${({ theme }) => theme.colors.secondary[9]};
+    background: ${props => props.theme.colors.secondary[11]};
+    h2 {
+      color: ${({ theme }) => theme.colors.secondary[2]};
+    }
   }
   a {
     display: flex;
