@@ -16,7 +16,7 @@ const List = styled.ul`
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
-  border-top: 1px solid ${props => props.theme.colors.secondary};
+  border-top: 1px solid ${props => props.theme.colors.border};
   padding: 1em 0 2em;
   margin: 0 1.5em;
 `

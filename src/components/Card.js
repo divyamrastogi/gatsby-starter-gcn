@@ -5,7 +5,7 @@ import Img from 'gatsby-image'
 
 const Post = styled.li`
   position: relative;
-  border: 1px solid ${props => props.theme.colors.secondary};
+  border: 1px solid ${props => props.theme.colors.border};
   border-radius: 2px;
   margin: 0 0 1em 0;
   width: 100%;
@@ -43,10 +43,16 @@ const StyledImg = styled(Img)`
 `
 
 const Title = styled.h2`
-  font-size: 1.5em;
+  font-size: 1.25rem;
   font-weight: 600;
   text-transform: capitalize;
   margin: 1rem 1rem 0.5rem 1rem;
+`
+
+const Info = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
 `
 
 const Date = styled.h3`
@@ -72,10 +78,12 @@ const Card = ({ slug, heroImage, title, publishDate, body, ...props }) => {
           <Link to={`${props.basePath}/${slug}/`}>
             <StyledImg fluid={heroImage.fluid} backgroundColor={'#eeeeee'} />
             <Title>{title}</Title>
-            <Date>{publishDate}</Date>
-            <ReadingTime>
-              {body.childMarkdownRemark.timeToRead} min read
-            </ReadingTime>
+            <Info>
+              <Date>{publishDate}</Date>
+              <ReadingTime>
+                {body.childMarkdownRemark.timeToRead} min read
+              </ReadingTime>
+            </Info>
             <Excerpt
               dangerouslySetInnerHTML={{
                 __html: body.childMarkdownRemark.excerpt,

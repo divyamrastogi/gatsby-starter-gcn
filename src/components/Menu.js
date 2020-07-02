@@ -5,7 +5,7 @@ import { useSiteMetadata } from '../hooks/use-site-metadata'
 import memoizeOne from 'memoize-one'
 
 const Header = styled.header`
-  background: ${props => props.theme.colors.primary};
+  background: ${props => props.theme.colors.primary[0]};
   width: 100%;
   padding: 1.5em 0;
 `
@@ -33,12 +33,12 @@ const Nav = styled.nav`
 
   a {
     text-decoration: none;
-    color: DarkGray;
+    color: #cff2ef;
     font-weight: 600;
     transition: all 0.2s;
-    border-bottom: 2px solid ${props => props.theme.colors.text};
     &:hover {
       color: white;
+      text-decoration: underline;
     }
   }
 `

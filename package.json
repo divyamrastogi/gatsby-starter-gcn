@@ -7,9 +7,11 @@
   "dependencies": {
     "@emotion/core": "^10.0.27",
     "@emotion/styled": "^10.0.27",
+    "babel-plugin-emotion": "^10.0.33",
     "babel-plugin-styled-components": "^1.10.7",
     "chalk": "^3.0.0",
     "contentful-import": "^7.6.2",
+    "eslint-plugin-emotion": "^10.0.27",
     "gatsby": "^2.19.12",
     "gatsby-awesome-pagination": "^0.3.5",
     "gatsby-image": "^2.2.40",

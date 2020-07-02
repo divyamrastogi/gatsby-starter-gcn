@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 `
 
 const Button = styled(Link)`
-  background: ${props => props.theme.colors.primary};
+  background: ${props => props.theme.colors.primary[0]};
   color: white;
   padding: 1rem;
   border-radius: 2px;
@@ -27,12 +27,12 @@ const Button = styled(Link)`
     background: ${props => props.theme.colors.highlight};
   }
   @media (hover: none) {
-    background: ${props => props.theme.colors.primary} !important;
+    background: ${props => props.theme.colors.primary[0]} !important;
   }
 `
 
 const Numbers = styled.div`
-  border: 1px solid ${props => props.theme.colors.secondary};
+  border: 1px solid ${props => props.theme.colors.border};
   border-radius: 2px;
   display: inline-block;
   float: left;
