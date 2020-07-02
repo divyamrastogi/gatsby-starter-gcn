@@ -50,22 +50,23 @@ const Title = styled.h2`
   font-size: 1.25rem;
   font-weight: 600;
   text-transform: capitalize;
-  margin: 1rem 1rem 0.5rem 1rem;
+  margin: ${({ theme }) => theme.spacing(2)};
+  margin-bottom: ${({ theme }) => theme.spacing(1)};
 `
 
 const Info = styled.div`
   display: flex;
   justify-content: space-between;
-  font-size: 1rem;
+  font-size: 0.875rem;
+  margin: ${({ theme }) => theme.spacing(2)};
+  margin-top: 0;
 `
 
 const Date = styled.h3`
-  margin: 0 1rem 0.5rem 1rem;
   color: gray;
 `
 
 const ReadingTime = styled.h4`
-  margin: 0 1rem 1.5rem 1rem;
   color: gray;
 `
 
