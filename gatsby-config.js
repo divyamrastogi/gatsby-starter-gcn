@@ -18,10 +18,12 @@ try {
 module.exports = {
   siteMetadata: {
     title: 'Swag On Nutrition & Wellness',
-    description:
-      'Live a healthier lifestyle.',
+    description: 'Live a healthier lifestyle.',
     siteUrl: 'https://swagonwellness.in',
-    image: '/images/swagonwellness.jpg',
+    logo: {
+      image: 'images/swagonwellness.png',
+      alt: 'SwagOn Nutrition & Wellness logo',
+    },
     menuLinks: [
       {
         name: 'Home',
@@ -40,6 +42,14 @@ module.exports = {
     `gatsby-plugin-emotion`,
     'gatsby-plugin-theme-ui',
     'gatsby-plugin-react-helmet',
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/static`,
+      },
+    },
     {
       resolve: `gatsby-transformer-remark`,
       options: {

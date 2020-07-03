@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from '@emotion/styled'
-import { useSiteMetadata } from '../hooks/use-site-metadata'
 import memoizeOne from 'memoize-one'
+import Logo from './Logo'
+import { useSiteMetadata } from '../hooks/use-site-metadata'
 
 const Header = styled.header`
-  background: ${props => props.theme.colors.primary[0]};
   width: 100%;
-  padding: 1.5em 0;
+  padding: 0.5em 0;
 `
 const Nav = styled.nav`
   width: 100%;
@@ -18,6 +18,7 @@ const Nav = styled.nav`
   ul {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
   li {
@@ -33,11 +34,11 @@ const Nav = styled.nav`
 
   a {
     text-decoration: none;
-    color: #cff2ef;
+    color: ${({ theme }) => theme.colors.primary[0]};
     font-weight: 600;
     transition: all 0.2s;
     &:hover {
-      color: white;
+      color: ${({ theme }) => theme.colors.primary[5]};
       text-decoration: underline;
     }
   }
@@ -54,16 +55,16 @@ const activeLinkStyle = {
 const defaultPages = []
 
 const Menu = ({ pages = defaultPages }) => {
-  const { menuLinks: links } = useSiteMetadata()
+  const { menuLinks: links, logo } = useSiteMetadata()
   const menuLinks = getMenuLinks(links, pages)
   return (
     <Header>
       <Nav>
         <ul>
-          {menuLinks.map(link => (
+          {menuLinks.map((link, index) => (
             <li key={link.id || link.name}>
               <Link to={link.slug} activeStyle={activeLinkStyle}>
-                {link.title || link.name}
+                {index === 0 ? <Logo {...logo} /> : link.title || link.name}
               </Link>
             </li>
           ))}

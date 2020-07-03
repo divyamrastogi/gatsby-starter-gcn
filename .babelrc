@@ -1,10 +1,18 @@
 {
   "env": {
     "production": {
-      "plugins": ["emotion", "@babel/plugin-syntax-dynamic-import", "@babel/plugin-proposal-class-properties"]
+      "plugins": [
+        "emotion",
+        "@babel/plugin-syntax-dynamic-import",
+        "@babel/plugin-proposal-class-properties"
+      ]
     },
     "development": {
-      "plugins": [["emotion", { "sourceMap": true }]]
+      "plugins": [
+        ["emotion", { "sourceMap": true }],
+        "@babel/plugin-syntax-dynamic-import",
+        "@babel/plugin-proposal-class-properties"
+      ]
     }
   }
 }
