@@ -49,7 +49,7 @@ const getMenuLinks = memoizeOne((links, pages) => {
 })
 
 const activeLinkStyle = {
-  color: 'white',
+  textDecoration: 'underline',
 }
 
 const defaultPages = []
@@ -63,7 +63,7 @@ const Menu = ({ pages = defaultPages }) => {
         <ul>
           {menuLinks.map((link, index) => (
             <li key={link.id || link.name}>
-              <Link to={link.slug} activeStyle={activeLinkStyle}>
+              <Link to={link.slug.startsWith('/') ? link.slug : `/${link.slug}`} activeStyle={activeLinkStyle}>
                 {index === 0 ? <Logo {...logo} /> : link.title || link.name}
               </Link>
             </li>
